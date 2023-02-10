@@ -47,6 +47,10 @@ namespace conf {
         std::string row;
 		conf.clear();
         while (std::getline(input_file, row)) {
+            int find = row.find('#'); // #‚ÌˆÊ’u’Tõ
+            if (find >= 0) row = row.substr(0,find); // #‚æ‚è‘O‚Ì•¶š—ñ‚ğÄ“o˜^
+            if (row.empty()) continue; // ‹ó‚Ìs‚Í–³‹
+
             std::vector<std::string> splited_str = split(row, regex_separator);
             conf.emplace(splited_str[0], splited_str[1]);
         }
